@@ -29,11 +29,11 @@ public class Item extends BaseEntity {
 
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "menuID", referencedColumnName = "id")
+//    @JoinColumn(name = "menuID", referencedColumnName = "id")
     private Menu menu;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "restaurantOrderID", referencedColumnName = "id")
+//    @JoinColumn(name = "restaurantOrderID", referencedColumnName = "id")
     private RestaurantOrder restaurantOrder;
 
     public Item(String name, Double price, String description) {

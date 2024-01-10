@@ -11,8 +11,6 @@ public interface IRepository<Entity, ID> {
 
     List<Entity> findAll();
 
-    boolean existsByID(ID id);
-
     void deleteById(ID id);
 
     Optional<Entity> findById(ID id);

@@ -29,7 +29,7 @@ public class RoomInMemoryRepository extends InMemoryRepository<Room, UUID> imple
         return entity;
     }
 
-    public Optional<List<Room>> findByNumber(Integer number) {
+    public Optional<List<Room>> findByRoomNumber(Integer number) {
         ArrayList<Room> result = new ArrayList<>();
         for (Room item : map.values())
         {

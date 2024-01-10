@@ -22,15 +22,9 @@ public class Menu extends BaseEntity{
     private String name;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "menu")
+    @OneToMany
     private Set<Item> items = new HashSet<>();
 
-    //CascadeType.Persist,.Merge
     @ManyToMany
-    @JoinTable(
-            name = "restaurantMenus",
-            joinColumns = @JoinColumn(name = "menuID"),
-            inverseJoinColumns = @JoinColumn(name = "restaurantID")
-    )
     private Set<Restaurant> restaurantsMenus = new HashSet<>();
 }

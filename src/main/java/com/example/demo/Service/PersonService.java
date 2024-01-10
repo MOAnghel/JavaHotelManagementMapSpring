@@ -3,6 +3,7 @@ package com.example.demo.Service;
 import com.example.demo.Models.Person;
 import com.example.demo.Repository.InMemory.IRepository;
 import com.example.demo.Repository.JPA.PersonRepository;
+import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
@@ -11,11 +12,7 @@ import java.util.UUID;
  */
 
 @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
+@NoArgsConstructor
 public abstract class PersonService<PersonType extends Person> extends BaseService<PersonType, UUID> {
-    private final PersonRepository personRepository;
 
-    public PersonService(IRepository<PersonType, UUID> repository, PersonRepository personRepository) {
-        super(repository);
-        this.personRepository = personRepository;
-    }
 }

@@ -20,7 +20,7 @@ public class Employee extends Person{
     protected Double salary;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "hotelEmployees")
+    @ManyToMany
     private Set<Hotel> hotelEmployees = new HashSet<>();
 
     public Employee(String name, String email, String phoneNumber, Double salary) {

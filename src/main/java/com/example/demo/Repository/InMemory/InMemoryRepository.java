@@ -21,7 +21,7 @@ public abstract class InMemoryRepository<Entity, ID> implements IRepository<Enti
     }
 
     @Override
-    public boolean existsByID(ID id) {
+    public boolean existsById(ID id) {
         return map.containsKey(id);
     }
 

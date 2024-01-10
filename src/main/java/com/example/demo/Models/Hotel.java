@@ -38,11 +38,11 @@ public class Hotel extends BaseEntity{
 //    )
 //    private Set<Client> hotelClients = new HashSet<>();
 //
-//    @ManyToMany
+    @ManyToMany
 //    @JoinTable(
 //            name = "hotelEmployees",
 //            joinColumns = @JoinColumn(name = "hotelID"),
 //            inverseJoinColumns = @JoinColumn(name = "employeeID")
 //    )
-//    private Set<Employee> hotelEmployees = new HashSet<>();
+    private Set<Employee> hotelEmployees = new HashSet<>();
 }

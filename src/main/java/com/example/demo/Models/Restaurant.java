@@ -27,6 +27,6 @@ public class Restaurant extends BaseEntity{
 
     //
     @JsonIgnore
-    @ManyToMany(mappedBy = "restaurantMenus")
+    @ManyToMany
     private Set<Menu> restaurantMenus = new HashSet<>();
 }

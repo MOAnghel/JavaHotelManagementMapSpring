@@ -16,8 +16,7 @@ import java.util.UUID;
 @Service
 @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 public class EmployeeService extends PersonService<Person> {
+
     @Autowired
-    public EmployeeService(IRepository<Person, UUID> repository, PersonRepository personRepository) {
-        super(repository, personRepository);
-    }
+    PersonRepository personRepository;
 }

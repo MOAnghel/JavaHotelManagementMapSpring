@@ -1,6 +1,7 @@
 package com.example.demo.Service;
 
 import com.example.demo.Repository.InMemory.IRepository;
+import lombok.NoArgsConstructor;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
@@ -14,10 +15,11 @@ import java.util.Optional;
  */
 
 @Service
+@NoArgsConstructor
 @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 public abstract class BaseService<Entity, IdType> implements IService<Entity, IdType>
 {
-    protected final IRepository<Entity, IdType> repository;
+    protected IRepository<Entity, IdType> repository;
     public BaseService(IRepository<Entity, IdType> repository)
     {
         this.repository = repository;
@@ -40,7 +42,7 @@ public abstract class BaseService<Entity, IdType> implements IService<Entity, Id
     @Override
     public Optional<Entity> update(IdType id, Entity object) {
 
-        if (!repository.existsByID(id)){
+        if (!repository.existsById(id)){
             return Optional.empty();
         }
         repository.deleteById(id);
@@ -50,7 +52,7 @@ public abstract class BaseService<Entity, IdType> implements IService<Entity, Id
 
     @Override
     public Optional<Entity> delete(IdType id) {
-        if (!repository.existsByID(id)){
+        if (!repository.existsById(id)){
             return Optional.empty();
         }
         Optional<Entity> object_to_remove = repository.findById(id);

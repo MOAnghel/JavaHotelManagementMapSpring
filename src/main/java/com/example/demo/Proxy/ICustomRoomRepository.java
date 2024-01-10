@@ -11,5 +11,5 @@ import java.util.Optional;
  */
 
 public interface ICustomRoomRepository {
-    Optional<List<Room>> findByNumber(@Param("roomNumber") Integer roomNumber);
+    Optional<List<Room>> findByRoomNumber(@Param("roomNumber") Integer roomNumber);
 }

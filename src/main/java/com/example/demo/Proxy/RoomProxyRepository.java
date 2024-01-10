@@ -45,12 +45,12 @@ public class RoomProxyRepository extends ProxyRepository<Room, UUID> implements 
     }
 
     @Override
-    public Optional<List<Room>> findByNumber(Integer number) {
-        return customRepo.findByNumber(number);
+    public Optional<List<Room>> findByRoomNumber(Integer number) {
+        return customRepo.findByRoomNumber(number);
     }
 
     @Override
-    public boolean existsByID(UUID uuid) {
+    public boolean existsById(UUID uuid) {
         return false;
     }
 }

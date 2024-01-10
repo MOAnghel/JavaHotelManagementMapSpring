@@ -6,6 +6,8 @@ import com.example.demo.Repository.InMemory.IRepository;
 import com.example.demo.Repository.JPA.PersonRepository;
 import com.example.demo.Service.Observer.IObserverDeletedClient;
 import com.example.demo.Service.Subject.ISubjectDeletedClient;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,12 +18,13 @@ import java.util.UUID;
  */
 
 @Service
+@NoArgsConstructor
+@AllArgsConstructor
 @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 public class ClientService extends PersonService<Person> implements IObserverDeletedClient, ISubjectDeletedClient {
+
     @Autowired
-    public ClientService(IRepository<Person, UUID> repository, PersonRepository personRepository) {
-        super(repository, personRepository);
-    }
+    PersonRepository personRepository;
 
     @Override
     public void addObserver(IObserverDeletedClient observer) {
