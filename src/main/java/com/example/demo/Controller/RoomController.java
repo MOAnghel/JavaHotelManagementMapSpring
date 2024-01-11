@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/room")
@@ -41,5 +40,4 @@ public class RoomController {
         Room mappedRoom = mapper.convertValue(room, Room.class);
         repository.delete(mappedRoom);
     }
-
 }

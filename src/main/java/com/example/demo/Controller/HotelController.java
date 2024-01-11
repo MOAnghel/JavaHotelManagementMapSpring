@@ -1,26 +1,42 @@
 package com.example.demo.Controller;
 
 import com.example.demo.Models.Hotel;
-import com.example.demo.Service.HotelService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.demo.Models.request.HotelDTO;
+import com.example.demo.Repository.JPA.HotelRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "/api/v1/")
+@RequestMapping("/hotel")
 public class HotelController {
-    public final HotelService hotelService;
+    @Autowired
+    HotelRepository repository;
 
-    public HotelController(HotelService hotelService) {
-        this.hotelService = hotelService;
+    @Autowired
+    ObjectMapper mapper;
+    @GetMapping(value = "/{hotelId}")
+    public Optional<Hotel> getHotelById(@PathVariable Long hotelId) {
+        return repository.findById(hotelId);
     }
 
+    @GetMapping()
+    public List<Hotel> getAllHotels() {
+        return repository.findAll();
+    }
 
-    //@GetMapping -> GET(return) @PostMapping -> POST (void)
-    @GetMapping(value = "add")
-    public String add() {
+    @PostMapping()
+    public void addHotel(@RequestBody HotelDTO hotel) {
+        Hotel mappedHotel = mapper.convertValue(hotel, Hotel.class);
+        repository.save(mappedHotel);
+    }
 
-        //var hotel = Hotel.getInstance();
-        return "Sa adaugat";
+    @DeleteMapping()
+    public void removeHotel(@RequestBody HotelDTO hotel) {
+        Hotel mappedHotel = mapper.convertValue(hotel, Hotel.class);
+        repository.delete(mappedHotel);
     }
 }

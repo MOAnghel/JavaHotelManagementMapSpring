@@ -5,8 +5,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 
-import java.util.UUID;
-
 /**
  * BaseEntity class to inherit ID
  */
