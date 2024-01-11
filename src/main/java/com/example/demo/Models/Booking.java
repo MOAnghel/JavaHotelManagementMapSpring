@@ -18,11 +18,6 @@ import java.util.Set;
 @Getter
 @Setter
 public class Booking extends BaseEntity{
-    @Column
-    @Enumerated
-    private RoomCategory roomCategory;
-
-    //@Column
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "clientID", referencedColumnName = "id")
     private Client client;

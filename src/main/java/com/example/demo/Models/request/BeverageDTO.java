@@ -10,6 +10,13 @@ import lombok.Setter;
 @Getter
 @Setter
 public class BeverageDTO {
+
+    private String name;
+
+    private Double price;
+
+    private String description;
+
     private Integer volume;
 
     private Integer alcoholPercentage;
