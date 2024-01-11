@@ -40,4 +40,10 @@ public class RoomController {
         Room mappedRoom = mapper.convertValue(room, Room.class);
         repository.delete(mappedRoom);
     }
+
+    @GetMapping("/printAll")
+    public void printAllRooms() {
+        List<Room> rooms = repository.findAll();
+        rooms.forEach(room -> System.out.println(room.toString()));
+    }
 }

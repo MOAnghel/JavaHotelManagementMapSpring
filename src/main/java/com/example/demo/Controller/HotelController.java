@@ -39,4 +39,10 @@ public class HotelController {
         Hotel mappedHotel = mapper.convertValue(hotel, Hotel.class);
         repository.delete(mappedHotel);
     }
+
+    @GetMapping("/printAll")
+    public void printAllHotels() {
+        List<Hotel> hotels = repository.findAll();
+        hotels.forEach(hotel -> System.out.println(hotel.toString()));
+    }
 }

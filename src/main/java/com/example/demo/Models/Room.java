@@ -42,4 +42,18 @@ public class Room extends BaseEntity{
     @ManyToOne
     @JoinColumn
     private Hotel hotel;
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "roomNumber=" + roomNumber +
+                ", roomCategory=" + roomCategory +
+                ", numberOfBeds=" + numberOfBeds +
+                ", occupied=" + occupied +
+                ", price=" + price +
+                ", bookedRooms=" + bookedRooms +
+                ", hotel=" + hotel +
+                ", id=" + id +
+                '}';
+    }
 }

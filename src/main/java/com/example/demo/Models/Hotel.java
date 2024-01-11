@@ -24,4 +24,14 @@ public class Hotel extends BaseEntity{
 
     @ManyToMany
     private Set<Employee> hotelEmployees = new HashSet<>();
+
+    @Override
+    public String toString() {
+        return "Hotel{" +
+                "name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", hotelEmployees=" + hotelEmployees +
+                ", id=" + id +
+                '}';
+    }
 }

@@ -40,4 +40,10 @@ public class BookingController {
         Booking mappedBooking = mapper.convertValue(booking, Booking.class);
         repository.delete(mappedBooking);
     }
+
+    @GetMapping("/printAll")
+    public void printAllBookings() {
+        List<Booking> bookings = repository.findAll();
+        bookings.forEach(booking -> System.out.println(booking.toString()));
+    }
 }

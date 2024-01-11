@@ -18,17 +18,15 @@ import java.util.Set;
 @Getter
 @Setter
 public class Booking extends BaseEntity{
-    @Column
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "clientID", referencedColumnName = "id")
     private Client client;
 
-    @Column
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "hotelID", referencedColumnName = "id")
     private Hotel hotel;
 
-    @Column
     @ManyToMany
     @JoinTable(
             name = "bookedRooms",
@@ -36,4 +34,14 @@ public class Booking extends BaseEntity{
             inverseJoinColumns = @JoinColumn(name = "roomID")
     )
     private Set<Room> bookedRooms = new HashSet<>();
+
+    @Override
+    public String toString() {
+        return "Booking{" +
+                "client=" + client +
+                ", hotel=" + hotel +
+                ", bookedRooms=" + bookedRooms +
+                ", id=" + id +
+                '}';
+    }
 }
