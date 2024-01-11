@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-public interface RoomRepository extends JpaRepository<Room, UUID>, IRoomRepository {
+public interface RoomRepository extends JpaRepository<Room, Long>, IRoomRepository {
 
 }

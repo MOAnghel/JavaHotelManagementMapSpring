@@ -17,7 +17,7 @@ import java.util.UUID;
  */
 
 @Component
-public class RoomProxyRepository extends ProxyRepository<Room, UUID> implements IRoomRepository {
+public class RoomProxyRepository extends ProxyRepository<Room, Long> implements IRoomRepository {
     private ICustomRoomRepository customRepo;
     private final RoomRepoFactory factory;
 
@@ -50,7 +50,7 @@ public class RoomProxyRepository extends ProxyRepository<Room, UUID> implements 
     }
 
     @Override
-    public boolean existsById(UUID uuid) {
+    public boolean existsById(Long uuid) {
         return false;
     }
 }

@@ -21,7 +21,7 @@ public class Beverage extends Item{
     @Column
     protected Integer alcoholPercentage;
 
-    public Beverage(UUID id, String name, Double price, String description, Integer volume, Integer alcoholPercentage) {
+    public Beverage(Long id, String name, Double price, String description, Integer volume, Integer alcoholPercentage) {
         super(name, price, description);
         super.id = id;
         this.volume = volume;

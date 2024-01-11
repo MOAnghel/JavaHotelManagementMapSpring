@@ -21,7 +21,7 @@ public class RoomController {
     @Autowired
     ObjectMapper mapper;
     @GetMapping(value = "/{roomId}")
-    public Optional<Room> getRoomById(@PathVariable UUID roomId) {
+    public Optional<Room> getRoomById(@PathVariable Long roomId) {
         return repository.findById(roomId);
     }
 
@@ -31,8 +31,15 @@ public class RoomController {
     }
 
     @PostMapping()
-    public void getAllRooms(@RequestBody RoomDTO room) {
+    public void addRoom(@RequestBody RoomDTO room) {
         Room mappedRoom = mapper.convertValue(room, Room.class);
         repository.save(mappedRoom);
     }
+
+    @DeleteMapping()
+    public void removeRoom(@RequestBody RoomDTO room) {
+        Room mappedRoom = mapper.convertValue(room, Room.class);
+        repository.delete(mappedRoom);
+    }
+
 }

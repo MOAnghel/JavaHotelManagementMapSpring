@@ -13,11 +13,11 @@ import java.util.UUID;
 
 @MappedSuperclass
 public class BaseEntity {
-    @GeneratedValue(strategy = GenerationType.UUID)
     @Id
-    protected UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    protected Long id;
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 }

@@ -5,7 +5,7 @@ import com.example.demo.Proxy.IRoomRepository;
 
 import java.util.*;
 
-public class RoomInMemoryRepository extends InMemoryRepository<Room, UUID> implements IRoomRepository {
+public class RoomInMemoryRepository extends InMemoryRepository<Room, Long> implements IRoomRepository {
 
     private RoomInMemoryRepository() {
         Room item1 = new Room();
@@ -39,7 +39,7 @@ public class RoomInMemoryRepository extends InMemoryRepository<Room, UUID> imple
     }
 
     @Override
-    public boolean existsById(UUID uuid) {
+    public boolean existsById(Long uuid) {
         return false;
     }
 }

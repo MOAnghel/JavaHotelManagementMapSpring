@@ -12,16 +12,15 @@ import org.springframework.stereotype.Service;
 import java.util.UUID;
 
 @Service
-public class RoomRepoFactory implements IRepoFactory<Room, UUID> {
+public class RoomRepoFactory implements IRepoFactory<Room, Long> {
     private final ApplicationContext applicationContext;
 
     @Autowired
     public RoomRepoFactory(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
     }
-// DE ce doua clase care aparent fac acelasi lucru???
     @Override
-    public IRepository<Room, UUID> buildIRepository(RepoTypes type) {
+    public IRepository<Room, Long> buildIRepository(RepoTypes type) {
         return switch (type) {
             case JPA -> getJpa();
             case InMemory -> getInMemory();

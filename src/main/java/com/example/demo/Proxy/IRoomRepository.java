@@ -9,5 +9,5 @@ import java.util.UUID;
  * Interface for implementing room repository
  */
 
-public interface IRoomRepository extends IRepository<Room, UUID>, ICustomRoomRepository {
+public interface IRoomRepository extends IRepository<Room, Long>, ICustomRoomRepository {
 }
