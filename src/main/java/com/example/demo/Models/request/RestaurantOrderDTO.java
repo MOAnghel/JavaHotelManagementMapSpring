@@ -1,19 +1,17 @@
 package com.example.demo.Models.request;
 
-import com.example.demo.Models.Employee;
+import com.example.demo.Models.Enums.PaymentMethod;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Set;
-
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
-public class HotelDTO {
-    private String name;
+public class RestaurantOrderDTO {
 
-    private String address;
+    private PaymentMethod paymentMethod;
+
 }

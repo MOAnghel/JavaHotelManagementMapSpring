@@ -1,19 +1,19 @@
 package com.example.demo.Models.request;
 
-import com.example.demo.Models.Employee;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Set;
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class HotelDTO {
+public class ItemDTO {
+
     private String name;
 
-    private String address;
+    private Double price;
+
+    private String description;
 }

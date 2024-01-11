@@ -17,7 +17,7 @@ import java.util.Set;
 @Setter
 public class Employee extends Person{
     @Column
-    protected Double salary;
+    private Double salary;
 
     @JsonIgnore
     @ManyToMany
@@ -30,5 +30,17 @@ public class Employee extends Person{
 
     public Employee copy() {
         return new Employee(name, email, phoneNumber, salary);
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "salary=" + salary +
+                ", hotelEmployees=" + hotelEmployees +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", id=" + id +
+                '}';
     }
 }

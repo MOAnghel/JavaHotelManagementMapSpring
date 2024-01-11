@@ -29,4 +29,16 @@ public class Beverage extends Item{
 
     @Column
     private Integer alcoholPercentage;
+
+    @Override
+    public String toString() {
+        return "Beverage{" +
+                "volume=" + volume +
+                ", alcoholPercentage=" + alcoholPercentage +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", description='" + description + '\'' +
+                ", id=" + id +
+                '}';
+    }
 }

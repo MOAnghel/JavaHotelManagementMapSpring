@@ -54,4 +54,16 @@ public class Item extends BaseEntity {
         Item item = (Item) o;
         return Objects.equals(name, item.name);
     }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "name='" + name + '\'' +
+                ", price=" + price +
+                ", description='" + description + '\'' +
+                ", menu=" + menu +
+                ", restaurantOrder=" + restaurantOrder +
+                ", id=" + id +
+                '}';
+    }
 }

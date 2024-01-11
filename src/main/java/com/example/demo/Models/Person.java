@@ -37,4 +37,14 @@ public class Person extends BaseEntity{
         Person person = (Person) o;
         return Objects.equals(name, person.name);
     }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", id=" + id +
+                '}';
+    }
 }

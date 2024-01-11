@@ -41,4 +41,14 @@ public class RestaurantOrder extends BaseEntity{
         RestaurantOrder that = (RestaurantOrder) o;
         return Objects.equals(id, that.id);
     }
+
+    @Override
+    public String toString() {
+        return "RestaurantOrder{" +
+                "client=" + client +
+                ", items=" + items +
+                ", paymentMethod=" + paymentMethod +
+                ", id=" + id +
+                '}';
+    }
 }

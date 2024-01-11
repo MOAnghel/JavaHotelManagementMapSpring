@@ -29,4 +29,13 @@ public class Restaurant extends BaseEntity{
     @JsonIgnore
     @ManyToMany
     private Set<Menu> restaurantMenus = new HashSet<>();
+
+    @Override
+    public String toString() {
+        return "Restaurant{" +
+                "name='" + name + '\'' +
+                ", restaurantMenus=" + restaurantMenus +
+                ", id=" + id +
+                '}';
+    }
 }

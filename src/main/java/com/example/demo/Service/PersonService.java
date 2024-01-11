@@ -3,16 +3,18 @@ package com.example.demo.Service;
 import com.example.demo.Models.Person;
 import com.example.demo.Repository.InMemory.IRepository;
 import com.example.demo.Repository.JPA.PersonRepository;
-import lombok.NoArgsConstructor;
-
-import java.util.UUID;
+import org.springframework.stereotype.Service;
 
 /**
  * Service for extracting Person repository info
  */
 
-@SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
-@NoArgsConstructor
-public abstract class PersonService<PersonType extends Person> extends BaseService<PersonType, UUID> {
+@Service
+public abstract class PersonService<PersonType extends Person> {
+    private final PersonRepository repository;
 
+
+    public PersonService(PersonRepository repository) {
+        this.repository = repository;
+    }
 }

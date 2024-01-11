@@ -18,14 +18,14 @@ import lombok.*;
 @NoArgsConstructor
 public class Food extends Item {
     @Column
-    protected Integer quantity;
+    private Integer quantity;
 
     @Column
-    protected Integer spiceLevel;
+    private Integer spiceLevel;
 
     @Column
     @Enumerated
-    protected FoodType foodType = FoodType.none;
+    private FoodType foodType = FoodType.none;
 
     public Food(String name, Double price, String description, Integer quantity, Integer spiceLevel, FoodType foodType) {
         super(name, price, description);
@@ -36,5 +36,18 @@ public class Food extends Item {
 
     public Food copy() {
         return new Food(name, price, description, quantity, spiceLevel, foodType);
+    }
+
+    @Override
+    public String toString() {
+        return "Food{" +
+                "quantity=" + quantity +
+                ", spiceLevel=" + spiceLevel +
+                ", foodType=" + foodType +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", description='" + description + '\'' +
+                ", id=" + id +
+                '}';
     }
 }

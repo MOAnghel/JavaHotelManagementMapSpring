@@ -1,12 +1,7 @@
 package com.example.demo.Models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
-
-
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Entity class for representing clients in a hotel
@@ -19,7 +14,7 @@ import java.util.Set;
 @Setter
 public class Client extends Person{
     @Column
-    protected String address;
+    private String address;
 
 //    @JsonIgnore
 //    @OneToMany(mappedBy = "client")
@@ -40,5 +35,16 @@ public class Client extends Person{
 
     public Client copy() {
         return new Client(name, email, phoneNumber, address);
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "address='" + address + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", id=" + id +
+                '}';
     }
 }
