@@ -14,9 +14,6 @@ public class BeverageService {
 
     @Autowired
     public BeverageService(BeverageRepository repository) {
-        super();
         this.repository = repository;
     }
-
-
 }
