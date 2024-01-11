@@ -1,6 +1,5 @@
 package com.example.demo.Service;
 
-import com.example.demo.Models.Person;
 import com.example.demo.Repository.JPA.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class EmployeeService extends PersonService<Person> {
+public class EmployeeService {
     private final EmployeeRepository repository;
 
     @Autowired

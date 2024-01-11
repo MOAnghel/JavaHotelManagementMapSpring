@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
-public class ClientService extends PersonService<Person> implements IObserverDeletedClient, ISubjectDeletedClient {
+public class ClientService implements IObserverDeletedClient, ISubjectDeletedClient {
     private final ClientRepository repository;
 
     public ClientService(ClientRepository repository) {
