@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/restaurantOrder")
+@RequestMapping("/api/restaurantOrder")
 public class RestaurantOrderController {
     @Autowired
     RestaurantOrderRepository repository;

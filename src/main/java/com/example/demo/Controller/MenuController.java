@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/controller")
+@RequestMapping("/api/menu")
 public class MenuController {
     @Autowired
     MenuRepository repository;

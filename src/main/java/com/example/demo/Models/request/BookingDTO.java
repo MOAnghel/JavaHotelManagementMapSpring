@@ -11,7 +11,7 @@ import lombok.Setter;
 import java.util.Set;
 
 @NoArgsConstructor
-@AllArgsConstructor
+//@AllArgsConstructor
 @Getter
 @Setter
 public class BookingDTO {

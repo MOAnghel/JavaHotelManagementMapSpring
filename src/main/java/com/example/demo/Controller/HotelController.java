@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/hotel")
+@RequestMapping("/api/hotel")
 public class HotelController {
     @Autowired
     HotelRepository repository;
