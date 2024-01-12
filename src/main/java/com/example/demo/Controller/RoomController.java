@@ -35,10 +35,11 @@ public class RoomController {
         repository.save(mappedRoom);
     }
 
-    @DeleteMapping()
-    public void removeRoom(@RequestBody RoomDTO room) {
-        Room mappedRoom = mapper.convertValue(room, Room.class);
-        repository.delete(mappedRoom);
+    @DeleteMapping("/delete/{roomId}")
+    public void removeRoom(@PathVariable Long roomId) {
+        Room existingRoom = repository.findById(roomId)
+                .orElseThrow(() -> new RuntimeException("Room not found with id: " + roomId));
+        repository.delete(existingRoom);
     }
 
     @PutMapping("/update/{roomId}")
