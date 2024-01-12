@@ -35,10 +35,19 @@ public class RestaurantOrderController {
     }
 
 
-    @DeleteMapping()
-    public void removeRestaurantOrder(@RequestBody RestaurantOrderDTO restaurantOrder) {
-        RestaurantOrder mappedRestaurantOrder = mapper.convertValue(restaurantOrder, RestaurantOrder.class);
-        repository.delete(mappedRestaurantOrder);
+    @DeleteMapping("/delete/{restaurantOrderId}")
+    public void removeRestaurantOrder(@PathVariable Long restaurantOrderId) {
+        RestaurantOrder existingRestaurantOrder = repository.findById(restaurantOrderId)
+                .orElseThrow(() -> new RuntimeException("Restaurant order not found with id: " + restaurantOrderId));
+        repository.delete(existingRestaurantOrder);
+    }
+
+    @PutMapping("/update/{restaurantOrderId}")
+    public RestaurantOrder updateRestaurantOrder(@PathVariable Long restaurantOrderId, @RequestBody RestaurantOrderDTO updatedRestaurantOrder) {
+        RestaurantOrder existingRestaurantOrder = repository.findById(restaurantOrderId)
+                .orElseThrow(() -> new RuntimeException("Restaurant order not found with id: " + restaurantOrderId));
+        existingRestaurantOrder.setPaymentMethod(updatedRestaurantOrder.getPaymentMethod());
+        return repository.save(existingRestaurantOrder);
     }
 
     @GetMapping("/printAll")

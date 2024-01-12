@@ -23,21 +23,30 @@ public class FoodController {
         return repository.findById(foodId);
     }
 
-    @GetMapping
+    @GetMapping()
     public List<Food> getAllFoods() {
         return repository.findAll();
     }
 
-    @PostMapping
+    @PostMapping()
     public void addFood(@RequestBody FoodDTO food) {
         Food mappedFood = mapper.convertValue(food, Food.class);
         repository.save(mappedFood);
     }
 
-    @DeleteMapping
-    public void removeFood(@RequestBody FoodDTO food) {
-        Food mappedFood = mapper.convertValue(food, Food.class);
-        repository.delete(mappedFood);
+    @DeleteMapping("/delete/{foodId}")
+    public void removeFood(@PathVariable Long foodId) {
+        Food existingFood = repository.findById(foodId)
+                .orElseThrow(() -> new RuntimeException("Food not found with id: " + foodId));
+        repository.delete(existingFood);
+    }
+
+    @PutMapping("/update/{foodId}")
+    public Food updateFood(@PathVariable Long foodId, @RequestBody FoodDTO updatedFood) {
+        Food existingFood = repository.findById(foodId)
+                .orElseThrow(() -> new RuntimeException("Food not found with id: " + foodId));
+        existingFood.setQuantity(updatedFood.getQuantity());
+        return repository.save(existingFood);
     }
 
     @GetMapping("/printAll")

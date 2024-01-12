@@ -35,10 +35,19 @@ public class BookingController {
         repository.save(mappedBooking);
     }
 
-    @DeleteMapping
-    public void deleteBooking(@RequestBody BookingDTO booking) {
-        Booking mappedBooking = mapper.convertValue(booking, Booking.class);
-        repository.delete(mappedBooking);
+    @DeleteMapping("/delete/{bookingId}")
+    public void deleteBooking(@PathVariable Long bookingId) {
+        Booking existingBooking = repository.findById(bookingId)
+                .orElseThrow(() -> new RuntimeException("Booking not found with id: " + bookingId));
+        repository.delete(existingBooking);
+    }
+
+    @PutMapping("/update/{bookingId}")
+    public Booking updateBooking(@PathVariable Long bookingId, @RequestBody BookingDTO updatedBooking) {
+        Booking existingBooking = repository.findById(bookingId)
+                .orElseThrow(() -> new RuntimeException("Booking not found with id: " + bookingId));
+        existingBooking.setBookedRooms(updatedBooking.getBookedRooms());
+        return repository.save(existingBooking);
     }
 
     @GetMapping("/printAll")

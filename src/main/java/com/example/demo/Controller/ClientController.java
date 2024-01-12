@@ -35,10 +35,19 @@ public class ClientController {
         repository.save(mappedClient);
     }
 
-    @DeleteMapping()
-    public void removeClient(@RequestBody ClientDTO client) {
-        Client mappedClient = mapper.convertValue(client, Client.class);
-        repository.delete(mappedClient);
+    @DeleteMapping("/delete/{clientId}")
+    public void removeClient(@PathVariable Long clientId) {
+        Client existingClient = repository.findById(clientId)
+                .orElseThrow(() -> new RuntimeException("Client not found with id" + clientId));
+        repository.delete(existingClient);
+    }
+
+    @PutMapping("/update/{clientId}")
+    public Client updateClient(@PathVariable Long clientId, @RequestBody ClientDTO updatedClient) {
+        Client existingClient = repository.findById(clientId)
+                .orElseThrow(() -> new RuntimeException("Client not found with id: " + clientId));
+        existingClient.setAddress(updatedClient.getAddress());
+        return repository.save(existingClient);
     }
 
     @GetMapping("/printAll")

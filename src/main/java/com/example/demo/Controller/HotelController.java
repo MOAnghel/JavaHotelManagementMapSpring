@@ -34,10 +34,19 @@ public class HotelController {
         repository.save(mappedHotel);
     }
 
-    @DeleteMapping()
-    public void removeHotel(@RequestBody HotelDTO hotel) {
-        Hotel mappedHotel = mapper.convertValue(hotel, Hotel.class);
-        repository.delete(mappedHotel);
+    @DeleteMapping("/delete/{hotelId}")
+    public void removeHotel(@PathVariable Long hotelId) {
+        Hotel existingHotel = repository.findById(hotelId)
+                        .orElseThrow(() -> new RuntimeException("Hotel not found with id: " + hotelId));
+        repository.delete(existingHotel);
+    }
+
+    @PutMapping("/update/{hotelId}")
+    public Hotel updateHotel(@PathVariable Long hotelId, @RequestBody HotelDTO updatedHotel) {
+        Hotel existingHotel = repository.findById(hotelId)
+                .orElseThrow(() -> new RuntimeException("Hotel not found with id: " + hotelId));
+        existingHotel.setName(updatedHotel.getName());
+        return repository.save(existingHotel);
     }
 
     @GetMapping("/printAll")

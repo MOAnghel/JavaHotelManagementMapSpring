@@ -23,21 +23,30 @@ public class EmployeeController {
         return repository.findById(employeeId);
     }
 
-    @GetMapping
+    @GetMapping()
     public List<Employee> getAllEmployees() {
         return repository.findAll();
     }
 
-    @PostMapping
+    @PostMapping()
     public void addEmployee(@RequestBody EmployeeDTO employee) {
         Employee mappedEmployee = mapper.convertValue(employee, Employee.class);
         repository.save(mappedEmployee);
     }
 
-    @DeleteMapping
-    public void removeEmployee(@RequestBody EmployeeDTO employee) {
-        Employee mappedEmployee = mapper.convertValue(employee, Employee.class);
-        repository.delete(mappedEmployee);
+    @DeleteMapping("/delete/{employeeId}")
+    public void removeEmployee(@PathVariable Long employeeId) {
+        Employee existingEmployee = repository.findById(employeeId)
+                        .orElseThrow(() -> new RuntimeException("Employee not found with id: " + employeeId));
+        repository.delete(existingEmployee);
+    }
+
+    @PutMapping("/update/{employeeId}")
+    public Employee updateEmployee(@PathVariable Long employeeId, @RequestBody EmployeeDTO updatedEmployee) {
+        Employee existingEmployee = repository.findById(employeeId)
+                .orElseThrow(() -> new RuntimeException("Employee not found with id: " + employeeId));
+        existingEmployee.setSalary(updatedEmployee.getSalary());
+        return repository.save(existingEmployee);
     }
 
     @GetMapping("/printAll")

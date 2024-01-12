@@ -1,6 +1,5 @@
 package com.example.demo.Controller;
 
-import com.example.demo.Models.Client;
 import com.example.demo.Models.Person;
 import com.example.demo.Models.request.PersonDTO;
 import com.example.demo.Repository.JPA.PersonRepository;
@@ -34,10 +33,21 @@ public class PersonController {
         repository.save(mappedPerson);
     }
 
-    @DeleteMapping()
-    public void removePerson(@RequestBody PersonDTO person) {
-        Person mappedPerson = mapper.convertValue(person, Person.class);
-        repository.delete(mappedPerson);
+    @DeleteMapping("/delete/{personId}")
+    public void removePerson(@PathVariable Long personId) {
+        Person existingPerson = repository.findById(personId)
+                        .orElseThrow(() -> new RuntimeException("Person not found with id: " + personId));
+        repository.delete(existingPerson);
+    }
+
+    @PutMapping("/update/{personId}")
+    public Person updatePerson(@PathVariable Long personId, @RequestBody PersonDTO updatedPerson) {
+        Person existingPerson = repository.findById(personId)
+                .orElseThrow(() -> new RuntimeException("Person not found with id: " + personId));
+        existingPerson.setName(updatedPerson.getName());
+        existingPerson.setEmail(updatedPerson.getEmail());
+        existingPerson.setPhoneNumber(updatedPerson.getPhoneNumber());
+        return repository.save(existingPerson);
     }
 
     @GetMapping("/printAll")

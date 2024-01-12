@@ -11,14 +11,14 @@ import lombok.Setter;
 import java.util.Set;
 
 @NoArgsConstructor
-//@AllArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 public class BookingDTO {
 
-    //private Client client;
+    private Client client;
 
-    //private Hotel hotel;
+    private Hotel hotel;
 
-    //private Set<Room> bookedRooms;
+    private Set<Room> bookedRooms;
 }

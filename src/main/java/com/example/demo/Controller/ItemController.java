@@ -34,10 +34,21 @@ public class ItemController {
         repository.save(mappedItem);
     }
 
-    @DeleteMapping()
-    public void removeItem(@RequestBody ItemDTO item) {
-        Item mappedItem = mapper.convertValue(item, Item.class);
-        repository.delete(mappedItem);
+    @DeleteMapping("/delete/{itemId}")
+    public void removeItem(@PathVariable Long itemId) {
+        Item existingItem = repository.findById(itemId)
+                        .orElseThrow(() -> new RuntimeException("Item not found with id: " + itemId));
+        repository.delete(existingItem);
+    }
+
+    @PutMapping("/update/{itemId}")
+    public Item updateItem(@PathVariable Long itemId, @RequestBody ItemDTO updatedItem) {
+        Item existingItem = repository.findById(itemId)
+                .orElseThrow(() -> new RuntimeException("Item not found with id: " + itemId));
+        existingItem.setName(updatedItem.getName());
+        existingItem.setPrice(updatedItem.getPrice());
+        existingItem.setDescription(updatedItem.getDescription());
+        return repository.save(existingItem);
     }
 
     @GetMapping("/printAll")

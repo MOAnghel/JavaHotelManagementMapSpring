@@ -34,10 +34,19 @@ public class RestaurantController {
         repository.save(mappedRestaurant);
     }
 
-    @DeleteMapping()
-    public void removeRestaurant(@RequestBody RestaurantDTO restaurant) {
-        Restaurant mappedRestaurant = mapper.convertValue(restaurant, Restaurant.class);
-        repository.delete(mappedRestaurant);
+    @DeleteMapping("/delete/{restaurantId}")
+    public void removeRestaurant(@PathVariable Long restaurantId) {
+        Restaurant existingRestaurant = repository.findById(restaurantId)
+                        .orElseThrow(() -> new RuntimeException("Restaurant not found with id: " + restaurantId));
+        repository.delete(existingRestaurant);
+    }
+
+    @PutMapping("/update/{restaurantId}")
+    public Restaurant updateRestaurant(@PathVariable Long restaurantId, @RequestBody RestaurantDTO updatedRestaurant) {
+        Restaurant existingRestaurant = repository.findById(restaurantId)
+                .orElseThrow(() -> new RuntimeException("Restaurant not found with id: " + restaurantId));
+        existingRestaurant.setName(updatedRestaurant.getName());
+        return repository.save(existingRestaurant);
     }
 
     @GetMapping("/printAll")

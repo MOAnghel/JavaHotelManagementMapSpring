@@ -34,10 +34,19 @@ public class MenuController {
         repository.save(mappedMenu);
     }
 
-    @DeleteMapping()
-    public void removeMenu(@RequestBody MenuDTO menu) {
-        Menu mappedMenu = mapper.convertValue(menu, Menu.class);
-        repository.delete(mappedMenu);
+    @DeleteMapping("/delete/{menuId}")
+    public void removeMenu(@PathVariable Long menuId) {
+        Menu existingMenu = repository.findById(menuId)
+                        .orElseThrow(() -> new RuntimeException("Menu not found with id: " + menuId));
+        repository.delete(existingMenu);
+    }
+
+    @PutMapping("/update/{menuId}")
+    public Menu updateMenu(@PathVariable Long menuId, @RequestBody MenuDTO updatedMenu) {
+        Menu existingMenu = repository.findById(menuId)
+                .orElseThrow(() -> new RuntimeException("Menu not found with id: " + menuId));
+        existingMenu.setName(updatedMenu.getName());
+        return repository.save(existingMenu);
     }
 
     @GetMapping("/printAll")

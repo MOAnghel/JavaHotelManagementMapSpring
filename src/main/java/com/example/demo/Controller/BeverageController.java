@@ -34,9 +34,24 @@ public class  BeverageController {
         repository.save(mappedBeverage);
     }
 
-    @DeleteMapping()
-    public void removeBeverage(@RequestBody BeverageDTO beverage) {
-        Beverage mappedBeverage = mapper.convertValue(beverage, Beverage.class);
-        repository.delete(mappedBeverage);
+    @DeleteMapping("/delete/{beverageId}")
+    public void removeBeverage(@PathVariable Long beverageId) {
+        Beverage existingBeverage = repository.findById(beverageId)
+                        .orElseThrow(() -> new RuntimeException("Beverage not found with id: " + beverageId));
+        repository.delete(existingBeverage);
+    }
+
+    @PutMapping("/update/{beverageId}")
+    public Beverage updateBeverage(@PathVariable Long beverageId, @RequestBody BeverageDTO updatedBeverage) {
+        Beverage existingBeverage = repository.findById(beverageId)
+                .orElseThrow(() -> new RuntimeException("Beverage not found with id: " + beverageId));
+        existingBeverage.setAlcoholPercentage(updatedBeverage.getAlcoholPercentage());
+        return repository.save(existingBeverage);
+    }
+
+    @GetMapping("/printAll")
+    public void printAllBeverages() {
+        List<Beverage> beverages = repository.findAll();
+        beverages.forEach(beverage -> System.out.println(beverage.toString()));
     }
 }
