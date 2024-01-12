@@ -1,5 +1,7 @@
 package com.example.demo.Models;
 
+import com.example.demo.Service.Observer.IObserverDeletedItem;
+import com.example.demo.Service.Subject.ISubjectDeletedItem;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
@@ -17,7 +19,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Menu extends BaseEntity{
+public class Menu extends BaseEntity implements ISubjectDeletedItem {
     @Column
     private String name;
 
@@ -27,4 +29,15 @@ public class Menu extends BaseEntity{
 
     @ManyToMany
     private Set<Restaurant> restaurantsMenus = new HashSet<>();
+
+    @Override
+    public void addObserver(IObserverDeletedItem observer) {}
+
+    @Override
+    public void removeObserver(IObserverDeletedItem observer) {}
+
+    @Override
+    public void notifyDeletedItem(Item item) {
+        System.out.println("Menu " + name + "has received an update");
+    }
 }

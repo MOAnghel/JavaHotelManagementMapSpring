@@ -1,6 +1,8 @@
 package com.example.demo.Models;
 
 import com.example.demo.Models.Enums.RoomCategory;
+import com.example.demo.Service.Observer.IObserverDeletedClient;
+import com.example.demo.Service.Subject.ISubjectDeletedClient;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
@@ -18,7 +20,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Room extends BaseEntity implements IRoom {
+public class Room extends BaseEntity implements IRoom, ISubjectDeletedClient {
     @Column
     private Integer roomNumber;
 
@@ -60,5 +62,16 @@ public class Room extends BaseEntity implements IRoom {
     @Override
     public Integer getRoomNumber() {
         return roomNumber;
+    }
+
+    @Override
+    public void addObserver(IObserverDeletedClient observer) {}
+
+    @Override
+    public void removeObserver(IObserverDeletedClient observer) {}
+
+    @Override
+    public void notifyDeletedClient(Client client) {
+        System.out.println("Room" + roomNumber + "has received an update");
     }
 }
