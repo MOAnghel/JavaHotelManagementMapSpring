@@ -41,6 +41,14 @@ public class RoomController {
         repository.delete(mappedRoom);
     }
 
+    @PutMapping("/update/{roomId}")
+    public Room updateRoom(@PathVariable Long roomId, @RequestBody RoomDTO updatedRoom) {
+        Room existingRoom = repository.findById(roomId)
+                .orElseThrow(() -> new RuntimeException("Room not found with id: " + roomId));
+        existingRoom.setRoomNumber(updatedRoom.getRoomNumber());
+        return repository.save(existingRoom);
+    }
+
     @GetMapping("/printAll")
     public void printAllRooms() {
         List<Room> rooms = repository.findAll();
