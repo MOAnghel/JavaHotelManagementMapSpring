@@ -1,5 +1,6 @@
 package com.example.demo.Controller;
 
+import com.example.demo.Models.LoggingRoomDecorator;
 import com.example.demo.Models.Room;
 import com.example.demo.Models.request.RoomDTO;
 import com.example.demo.Repository.JPA.RoomRepository;
@@ -25,8 +26,14 @@ public class RoomController {
     }
 
     @GetMapping(value = "/getRoomNumber/{roomId}")
-    public Optional<Room> getRoomNumber(@PathVariable Long roomId) {
-        return repository.findById(roomId);
+    public String getRoomNumber(@PathVariable Long roomId) {
+        Room room = repository.findById(roomId).orElse(null);
+        if(room != null) {
+            LoggingRoomDecorator loggingRoom = new LoggingRoomDecorator(room);
+            Integer roomNumber = loggingRoom.getRoomNumber();
+            return "Room number: " + roomNumber;
+        }
+        return null;
     }
 
     @GetMapping()
