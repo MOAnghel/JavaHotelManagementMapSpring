@@ -1,5 +1,6 @@
 package com.example.demo.Controller;
 
+import com.example.demo.Models.Client;
 import com.example.demo.Models.Person;
 import com.example.demo.Models.request.PersonDTO;
 import com.example.demo.Repository.JPA.PersonRepository;
@@ -24,6 +25,10 @@ public class PersonController {
     }
 
     @GetMapping()
+    public List<Person> getAllPersons() {
+        return repository.findAll();
+    }
+    @PostMapping()
     public void addPerson(@RequestBody PersonDTO person) {
         Person mappedPerson = mapper.convertValue(person, Person.class);
         repository.save(mappedPerson);
