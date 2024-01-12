@@ -18,7 +18,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Room extends BaseEntity{
+public class Room extends BaseEntity implements IRoom {
     @Column
     private Integer roomNumber;
 
