@@ -24,6 +24,11 @@ public class RoomController {
         return repository.findById(roomId);
     }
 
+    @GetMapping(value = "/getRoomNumber/{roomId}")
+    public Optional<Room> getRoomNumber(@PathVariable Long roomId) {
+        return repository.findById(roomId);
+    }
+
     @GetMapping()
     public List<Room> getAllRooms() {
         return repository.findAll();

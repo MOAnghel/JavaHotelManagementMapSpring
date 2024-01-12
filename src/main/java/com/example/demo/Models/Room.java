@@ -56,4 +56,9 @@ public class Room extends BaseEntity implements IRoom {
                 ", id=" + id +
                 '}';
     }
+
+    @Override
+    public Integer getRoomNumber() {
+        return roomNumber;
+    }
 }
