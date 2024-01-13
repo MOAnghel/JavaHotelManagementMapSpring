@@ -4,7 +4,10 @@ import com.example.demo.Service.Observer.IObserverDeletedRoom;
 import com.example.demo.Service.Subject.ISubjectDeletedRoom;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -23,6 +26,9 @@ public class Hotel extends BaseEntity implements ISubjectDeletedRoom {
 
     @Column
     private String address;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "hotel", cascade = CascadeType.ALL)
+    private List<Room> hotelRooms = new ArrayList<>();
 
     @ManyToMany
     private Set<Employee> hotelEmployees = new HashSet<>();

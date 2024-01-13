@@ -41,8 +41,8 @@ public class Room extends BaseEntity implements IRoom, ISubjectDeletedClient {
     @ManyToMany(mappedBy = "bookedRooms")
     private Set<Booking> bookedRooms = new HashSet<>();
 
-    @ManyToOne
-    @JoinColumn
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "hotel_id")
     private Hotel hotel;
 
     @Override

@@ -1,6 +1,7 @@
 package com.example.demo.Models.request;
 
 import com.example.demo.Models.Enums.RoomCategory;
+import com.example.demo.Models.Hotel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,4 +26,6 @@ public class RoomDTO {
 
 
     private Integer price;
+
+    private HotelDTO hotel;
 }

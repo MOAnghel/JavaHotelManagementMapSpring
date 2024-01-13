@@ -1,14 +1,17 @@
 package com.example.demo.Controller;
 
+import com.example.demo.Models.Hotel;
 import com.example.demo.Models.LoggingRoomDecorator;
 import com.example.demo.Models.Room;
 import com.example.demo.Models.request.RoomDTO;
+import com.example.demo.Repository.JPA.HotelRepository;
 import com.example.demo.Repository.JPA.RoomRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @RestController
@@ -17,6 +20,9 @@ public class RoomController {
 
     @Autowired
     RoomRepository repository;
+
+    @Autowired
+    HotelRepository hotelRepository;
 
     @Autowired
     ObjectMapper mapper;
@@ -44,6 +50,13 @@ public class RoomController {
     @PostMapping()
     public void addRoom(@RequestBody RoomDTO room) {
         Room mappedRoom = mapper.convertValue(room, Room.class);
+        Hotel mappedHotel = mapper.convertValue(room.getHotel(), Hotel.class);
+        List<Hotel> storedHotels = hotelRepository.findAll();
+        for (Hotel hotel: storedHotels) {
+            if(Objects.equals(hotel.getName(), mappedHotel.getName())){
+                mappedRoom.setHotel(mappedHotel);
+            }
+        }
         repository.save(mappedRoom);
     }
 
