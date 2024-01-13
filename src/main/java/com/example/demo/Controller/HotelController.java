@@ -46,6 +46,7 @@ public class HotelController {
         Hotel existingHotel = repository.findById(hotelId)
                 .orElseThrow(() -> new RuntimeException("Hotel not found with id: " + hotelId));
         existingHotel.setName(updatedHotel.getName());
+        existingHotel.setAddress(updatedHotel.getAddress());
         return repository.save(existingHotel);
     }
 
