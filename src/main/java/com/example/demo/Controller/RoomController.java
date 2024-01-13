@@ -59,6 +59,10 @@ public class RoomController {
         Room existingRoom = repository.findById(roomId)
                 .orElseThrow(() -> new RuntimeException("Room not found with id: " + roomId));
         existingRoom.setRoomNumber(updatedRoom.getRoomNumber());
+        existingRoom.setPrice(updatedRoom.getPrice());
+        existingRoom.setNumberOfBeds(updatedRoom.getNumberOfBeds());
+        existingRoom.setRoomCategory(updatedRoom.getRoomCategory());
+        existingRoom.setOccupied(updatedRoom.isOccupied());
         return repository.save(existingRoom);
     }
 
